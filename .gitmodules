@@ -1,6 +1,8 @@
 [submodule "opendds"]
 	path = opendds
 	url = https://aur.archlinux.org/opendds
+	branch = master
 [submodule "opendds-git"]
 	path = opendds-git
 	url = https://aur.archlinux.org/opendds-git
+	branch = master
