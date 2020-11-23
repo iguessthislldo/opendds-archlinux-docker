@@ -5,6 +5,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  schedule:
+    - cron: "0 3 * * 5"
 
 jobs:
 
@@ -12,7 +14,14 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - AUR_PACKAGE: opendds
+          - AUR_PACKAGE: opendds-git
+
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile
+      run: docker build . --file Dockerfile --build-arg AUR_PACKAGE=$AUR_PACKAGE

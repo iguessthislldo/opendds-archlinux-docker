@@ -1,0 +1,6 @@
+[submodule "opendds"]
+	path = opendds
+	url = https://aur.archlinux.org/opendds
+[submodule "opendds-git"]
+	path = opendds-git
+	url = https://aur.archlinux.org/opendds-git

@@ -1,8 +1,11 @@
 FROM "archlinux:base-devel"
 
-RUN pacman --sync --needed --noconfirm --refresh git && \
-    useradd --create-home user && \
-    cd /home/user && \
-    sudo -u user git clone --depth 1 https://aur.archlinux.org/opendds-git.git && \
-    cd opendds-git && \
-    sudo -u user MAKEFLAGS="-j$(nproc)" makepkg --syncdeps --clean
+ARG AUR_PACKAGE=opendds-git
+
+# makepkg can't be run as root
+RUN useradd --create-home user
+USER user
+
+COPY --chown=user ${AUR_PACKAGE} /home/user/${AUR_PACKAGE}
+WORKDIR /home/user/${AUR_PACKAGE}
+RUN MAKEFLAGS="-j$(nproc)" makepkg --syncdeps --clean
