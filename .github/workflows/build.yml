@@ -26,5 +26,11 @@ jobs:
       with:
         submodules: true
 
+    - name: ls
+      run: ls -al
+
+    - name: ls AUR_PACKAGE
+      run: ls -al $AUR_PACKAGE
+
     - name: Build the Docker image
       run: docker build . --file Dockerfile --build-arg AUR_PACKAGE=$AUR_PACKAGE

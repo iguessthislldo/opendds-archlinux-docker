@@ -11,4 +11,5 @@ USER user
 
 COPY --chown=user ${AUR_PACKAGE} /home/user/${AUR_PACKAGE}
 WORKDIR /home/user/${AUR_PACKAGE}
+RUN ls -al
 RUN MAKEFLAGS="-j$(nproc)" makepkg --syncdeps --clean
