@@ -23,5 +23,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: true
+
     - name: Build the Docker image
       run: docker build . --file Dockerfile --build-arg AUR_PACKAGE=$AUR_PACKAGE
