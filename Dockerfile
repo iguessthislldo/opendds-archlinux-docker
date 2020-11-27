@@ -2,7 +2,10 @@ FROM "archlinux:base-devel"
 
 ARG AUR_PACKAGE=opendds-git
 
+RUN pacman --sync --needed --noconfirm --refresh git
+
 # makepkg can't be run as root
+RUN groupadd -f users
 RUN useradd --create-home user
 USER user
 
